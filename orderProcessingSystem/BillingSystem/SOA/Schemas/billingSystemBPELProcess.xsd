@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	targetNamespace="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="bsRequest">
+		<complexType>
+			<sequence>
+				<element name="orderID" type="integer"/>
+                                <element name="itemInfo" minOccurs="1" maxOccurs="unbounded">
+                                  <complexType>
+                                          <sequence>
+                                                  <element name="itemName" type="string"/>
+                                                  <element name="itemCost" type="integer"/>
+                                          </sequence>
+                                  </complexType>
+                                </element>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="bsResponse">
+		<complexType>
+			<sequence>
+				<element name="orderID" type="integer"/>
+                                <element name="itemInfo" minOccurs="1" maxOccurs="unbounded">
+                                  <complexType>
+                                          <sequence>
+                                                  <element name="itemName" type="string"/>
+                                                  <element name="itemCost" type="integer"/>
+                                          </sequence>
+                                  </complexType>
+                                </element>
+                                <element name="totalCost" type="integer"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
