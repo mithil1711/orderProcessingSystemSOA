@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.request.org"
+            targetNamespace="http://www.request.org" elementFormDefault="qualified">
+  <xsd:element name="exampleElement">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  
+  <xsd:element name="request">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ccNumber" type="xsd:integer"/>
+        <xsd:element name="ccVendor" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

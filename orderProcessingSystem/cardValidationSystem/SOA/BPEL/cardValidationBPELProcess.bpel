@@ -1,0 +1,82 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer
+
+  Created: Sat May 20 16:12:21 IST 2023
+  Author:  Mithil
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="cardValidationBPELProcess"
+               targetNamespace="http://xmlns.oracle.com/orderProcessingSystem/cardValidationSystem/cardValidationBPELProcess"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://xmlns.oracle.com/orderProcessingSystem/cardValidationSystem/cardValidationBPELProcess"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns1="http://xmlns.oracle.com/orderProcessingSystem/cardValidationSystem/cardValidationSystemService"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:ess="http://xmlns.oracle.com/scheduler" xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns2="http://www.request.org"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap" xmlns:ns3="http://www.response.org">
+
+  <!--
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC
+     Set of activities coordinating the flow of messages across the
+     services integrated within this business process
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <partnerLinks>
+    <partnerLink name="cardValidationSOAPService" partnerLinkType="ns1:cardValidationSOAPService"
+                 myRole="cardValidationPort"/>
+  </partnerLinks>
+  <variables>
+    <variable name="cardValidationReceive_cardValidationOperation_InputVariable" messageType="ns1:requestMessage"/>
+    <variable name="cardValidationReply_cardValidationOperation_OutputVariable" messageType="ns1:replyMessage"/>
+  </variables>
+  <sequence name="main">
+    <receive name="cardValidationReceive" createInstance="yes" partnerLink="cardValidationSOAPService"
+             portType="ns1:cardValidationPort" operation="cardValidationOperation"
+             variable="cardValidationReceive_cardValidationOperation_InputVariable"/>
+    <if name="If">
+      <condition expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$cardValidationReceive_cardValidationOperation_InputVariable.inputPart/ns2:ccNumber &gt; 5000</condition>
+      <assign name="Assign1">
+        <copy>
+          <from>"Valid"</from>
+          <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$cardValidationReply_cardValidationOperation_OutputVariable.outputPart/ns3:ccStatus</to>
+        </copy>
+      </assign>
+      <else>
+        <assign name="Assign2">
+          <copy>
+            <from>"Invalid"</from>
+            <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$cardValidationReply_cardValidationOperation_OutputVariable.outputPart/ns3:ccStatus</to>
+          </copy>
+        </assign>
+      </else>
+    </if>
+    <assign name="Assign3">
+      <copy>
+        <from>$cardValidationReceive_cardValidationOperation_InputVariable.inputPart/ns2:ccNumber</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$cardValidationReply_cardValidationOperation_OutputVariable.outputPart/ns3:ccNumber</to>
+      </copy>
+      <copy>
+        <from>$cardValidationReceive_cardValidationOperation_InputVariable.inputPart/ns2:ccVendor</from>
+        <to expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xpath1.0">$cardValidationReply_cardValidationOperation_OutputVariable.outputPart/ns3:ccVendor</to>
+      </copy>
+    </assign>
+    <reply name="cardValidationReply" partnerLink="cardValidationSOAPService"
+           variable="cardValidationReply_cardValidationOperation_OutputVariable" portType="ns1:cardValidationPort"
+           operation="cardValidationOperation"/>
+  </sequence>
+</process>

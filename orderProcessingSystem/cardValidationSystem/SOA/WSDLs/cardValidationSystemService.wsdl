@@ -1,0 +1,30 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="cardValidationSystemService"
+     targetNamespace="http://xmlns.oracle.com/orderProcessingSystem/cardValidationSystem/cardValidationSystemService"
+     xmlns:tns="http://xmlns.oracle.com/orderProcessingSystem/cardValidationSystem/cardValidationSystemService"
+     xmlns:inp1="http://www.request.org"
+     xmlns:inp2="http://www.response.org"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.request.org" schemaLocation="../Schemas/requestDoc.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.response.org" schemaLocation="../Schemas/responseDoc.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="requestMessage">
+        <wsdl:part name="inputPart" element="inp1:request"/>
+    </wsdl:message>
+    <wsdl:message name="replyMessage">
+        <wsdl:part name="outputPart" element="inp2:response"/>
+    </wsdl:message>
+    <wsdl:portType name="cardValidationPort">
+        <wsdl:operation name="cardValidationOperation">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>
