@@ -12,5 +12,5 @@
         <plnk:role name="cardValidationPort" portType="tns:cardValidationPort"/>
     </plnk:partnerLinkType>
     <wsdl:import namespace="http://xmlns.oracle.com/orderProcessingSystem/cardValidationSystem/cardValidationSystemService"
-         location="cardValidationSystemService.wsdl"/>
+         location="oramds:/apps/orderProcessingSystem/cardvalidationsystem/WSDLs/cardValidationSystemService.wsdl"/>
 </wsdl:definitions>
