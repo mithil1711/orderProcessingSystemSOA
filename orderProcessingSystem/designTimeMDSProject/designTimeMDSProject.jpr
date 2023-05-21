@@ -74,14 +74,10 @@
       <string v="oracle.sb.tooling.ide.core.projects.SbProjectSettings/sbContentSet"/>
       <string v="oracle.tip.tools.ide.ess.addin.ESSContentSetProvider/ess-content"/>
    </list>
-   <value n="defaultPackage" v="cardvalidationsystem"/>
+   <value n="defaultPackage" v="designtimemdsproject"/>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
          <string v="SOA"/>
-         <string v="WSDL"/>
-         <string v="WSPolicy"/>
-         <string v="XML"/>
-         <string v="XML_SCHEMA"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
@@ -114,7 +110,38 @@
    </hash>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">
-         <hash n="cardValidationSystem">
+         <hash n="designTimeMDSDeploymentProfile">
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="true"/>
+            </hash>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <url n="location" path="SOA/apps/"/>
+                           <value n="type" v="1"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Project Output"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="project-output"/>
+                     <value n="type" v="1"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="jarURL" path="deploy/designTimeMDSDeploymentProfile.jar"/>
+            <value n="profileClass" v="oracle.jdeveloper.deploy.jar.ArchiveProfile"/>
+            <value n="profileName" v="designTimeMDSDeploymentProfile"/>
+         </hash>
+         <hash n="designTimeMDSProject">
             <hash n="archiveOptions">
                <value n="hasManifest" v="false"/>
             </hash>
@@ -201,40 +228,35 @@
                   </hash>
                </list>
             </hash>
-            <url n="jarURL" path="deploy/sca_cardValidationSystem.jar"/>
+            <url n="jarURL" path="deploy/sca_designTimeMDSProject.jar"/>
             <value n="profileClass" v="oracle.tip.tools.ide.fabric.deploy.sar.SarProfile"/>
-            <value n="profileName" v="cardValidationSystem"/>
+            <value n="profileName" v="designTimeMDSProject"/>
          </hash>
       </hash>
       <list n="profileList">
-         <string v="cardValidationSystem"/>
+         <string v="designTimeMDSProject"/>
+         <string v="designTimeMDSDeploymentProfile"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
-      <value n="j2eeWebAppName" v="orderProcessingSystem-cardValidationSystem-webapp"/>
-      <value n="j2eeWebContextRoot" v="orderProcessingSystem-cardValidationSystem-context-root"/>
+      <value n="j2eeWebAppName" v="orderProcessingSystem-designTimeMDSProject-webapp"/>
+      <value n="j2eeWebContextRoot" v="orderProcessingSystem-designTimeMDSProject-context-root"/>
    </hash>
    <hash n="oracle.jdeveloper.model.PathsConfiguration">
       <hash n="javaContentSet">
          <list n="constituent-sets">
             <hash>
-               <list n="pattern-filters">
-                  <string v="+**"/>
-               </list>
-               <list n="url-path">
-                  <url path="src/"/>
-               </list>
-            </hash>
-            <hash>
-               <list n="pattern-filters">
-                  <string v="+**"/>
-               </list>
                <list n="url-path">
                   <url path="SOA/SCA-INF/src/"/>
                </list>
             </hash>
          </list>
-         <list n="url-path"/>
+         <list n="pattern-filters">
+            <string v="+**"/>
+         </list>
+         <list n="url-path">
+            <url path="src/"/>
+         </list>
       </hash>
    </hash>
    <hash n="oracle.jdeveloper.runner.RunConfigurations">
@@ -320,5 +342,4 @@
          </list>
       </hash>
    </hash>
-   <value n="SCA_BPEL_FOLDER_PROPERTY_NAME" v="BPEL/"/>
 </jpr:project>
