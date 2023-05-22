@@ -127,6 +127,10 @@
                      <hash n="filters">
                         <list n="rules">
                            <hash>
+                              <value n="pattern" v="orderProcessingSystem/cardvalidationsystem/"/>
+                              <value n="type" v="1"/>
+                           </hash>
+                           <hash>
                               <value n="pattern" v="**"/>
                               <value n="type" v="0"/>
                            </hash>
@@ -151,10 +155,6 @@
                      <list n="contributors">
                         <hash>
                            <url n="location" path="SOA/"/>
-                           <value n="type" v="1"/>
-                        </hash>
-                        <hash>
-                           <url n="location" path="../src/"/>
                            <value n="type" v="1"/>
                         </hash>
                      </list>
@@ -229,13 +229,14 @@
                </list>
             </hash>
             <url n="jarURL" path="deploy/sca_designTimeMDSProject.jar"/>
+            <value n="patching_profile" v="false"/>
             <value n="profileClass" v="oracle.tip.tools.ide.fabric.deploy.sar.SarProfile"/>
             <value n="profileName" v="designTimeMDSProject"/>
          </hash>
       </hash>
       <list n="profileList">
-         <string v="designTimeMDSProject"/>
          <string v="designTimeMDSDeploymentProfile"/>
+         <string v="designTimeMDSProject"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
@@ -246,17 +247,23 @@
       <hash n="javaContentSet">
          <list n="constituent-sets">
             <hash>
+               <list n="pattern-filters">
+                  <string v="+**"/>
+               </list>
+               <list n="url-path">
+                  <url path="src/"/>
+               </list>
+            </hash>
+            <hash>
+               <list n="pattern-filters">
+                  <string v="+**"/>
+               </list>
                <list n="url-path">
                   <url path="SOA/SCA-INF/src/"/>
                </list>
             </hash>
          </list>
-         <list n="pattern-filters">
-            <string v="+**"/>
-         </list>
-         <list n="url-path">
-            <url path="src/"/>
-         </list>
+         <list n="url-path"/>
       </hash>
    </hash>
    <hash n="oracle.jdeveloper.runner.RunConfigurations">

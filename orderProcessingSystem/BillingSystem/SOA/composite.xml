@@ -12,8 +12,9 @@
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
   <import namespace="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess"
-          location="WSDLs/billingSystemBPELProcess.wsdl" importType="wsdl"/>
-  <service name="billingsystembpelprocess_client_ep" ui:wsdlLocation="WSDLs/billingSystemBPELProcess.wsdl">
+          location="oramds:/apps/orderProcessingSystem/billingSystem/WSDLs/billingSystemBPELProcess.wsdl" importType="wsdl"/>
+  <service name="billingsystembpelprocess_client_ep"
+           ui:wsdlLocation="oramds:/apps/orderProcessingSystem/billingSystem/WSDLs/billingSystemBPELProcess.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess#wsdl.interface(billingSystemBPELProcess)"
                     callbackInterface="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess#wsdl.interface(billingSystemBPELProcessCallback)"/>
     <binding.ws port="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess#wsdl.endpoint(billingsystembpelprocess_client_ep/billingSystemBPELProcess_pt)"/>
@@ -26,7 +27,8 @@
   <component name="billingSystemBPELProcess" version="2.0">
     <implementation.bpel src="BPEL/billingSystemBPELProcess.bpel"/>
     <componentType>
-      <service name="billingsystembpelprocess_client" ui:wsdlLocation="WSDLs/billingSystemBPELProcess.wsdl">
+      <service name="billingsystembpelprocess_client"
+               ui:wsdlLocation="oramds:/apps/orderProcessingSystem/billingSystem/WSDLs/billingSystemBPELProcess.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess#wsdl.interface(billingSystemBPELProcess)"
                         callbackInterface="http://xmlns.oracle.com/orderProcessingSystem/BillingSystem/billingSystemBPELProcess#wsdl.interface(billingSystemBPELProcessCallback)"/>
       </service>
